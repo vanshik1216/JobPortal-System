@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <tx:annotation-driven transaction-manager="txManager"/>
+
+    <!--         Database Configuration-->
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/JobPortal"/>
+        <property name="username" value="root"/>
+        <property name="password" value="vanshika"/>
+    </bean>
+
+
+    <!--         Hibernate Session Factory-->
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+<!--                <prop key="hibernate.show_sql">true</prop>-->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        <!-- Entity package -->
+        <property name="packagesToScan" value="com.G26child2.Entity"/>
+    </bean>
+
+    <!--  hibernate template-->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+    <!--         Transaction Manager-->
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+    <!--         DAO Beans-->
+
+    <bean id="companyDao" class="com.G26child2.Dao.CompanyDao">
+        <property name="ht" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="candidateDao" class="com.G26child2.Dao.CandidateDao">
+        <property name="ht" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="jobDao" class="com.G26child2.Dao.JobDao">
+        <property name="ht" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="jobApplicationDao" class="com.G26child2.Dao.JobApplicationDao">
+        <property name="ht" ref="hibernateTemplate"/>
+    </bean>
+
+
+    <!--         Service Beans-->
+
+    <bean id="companyService" class="com.G26child2.Services.CompanyService">
+        <property name="companyDao" ref="companyDao"/>
+    </bean>
+
+    <bean id="candidateService" class="com.G26child2.Services.CandidateService">
+        <property name="candidateDao" ref="candidateDao"/>
+    </bean>
+
+    <bean id="jobService" class="com.G26child2.Services.JobService">
+        <property name="jobDao" ref="jobDao"/>
+    </bean>
+
+    <bean id="jobApplicationService" class="com.G26child2.Services.JobApplicationService">
+        <property name="jobApplicationDao" ref="jobApplicationDao"/>
+    </bean>
+
+</beans>
