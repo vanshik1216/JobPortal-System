@@ -52,7 +52,7 @@ public class Main {
                         Company comp = companyService.loginCompany(email, pass);
                         if (comp != null) {
                             System.out.println("Login Success!");
-                            System.out.println("1. Post Job  2. View Jobs  3.Delete Job");
+                            System.out.println("1. Post Job  2. View Jobs  3.Delete Job 4.View Job Applications");
                             int d = sc.nextInt(); sc.nextLine();
                             if (d == 1) {
                                 Job job = new Job();
@@ -60,6 +60,7 @@ public class Main {
 
                                 System.out.print("Title: "); job.setTitle(sc.nextLine());
                                 System.out.print("Description: "); job.setDescription(sc.nextLine());
+                                System.out.print("Package Offered: "); job.setPackageOffered(sc.nextInt());
                                 jobService.postJob(job);
                                 System.out.println("Job Posted!");
                             }
@@ -133,6 +134,7 @@ public class Main {
                                     for (Job j : jobs) {
                                         System.out.println("ID:"+j.getId());
                                         System.out.println("Title:"+j.getTitle());
+                                        System.out.println("Package Offered:"+j.getPackageOffered());
                                     }
                                 }
                             } else if (f == 2) {

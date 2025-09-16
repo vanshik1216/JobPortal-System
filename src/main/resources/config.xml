@@ -9,6 +9,7 @@
 
     <tx:annotation-driven transaction-manager="txManager"/>
 
+
     <!--         Database Configuration-->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

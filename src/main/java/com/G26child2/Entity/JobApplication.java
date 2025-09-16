@@ -12,7 +12,9 @@ public class JobApplication {
     Candidate candidate;
     @ManyToOne
     Job job;
+JobApplication(){
 
+}
     public JobApplication( Candidate candidate, Job job) {
         this.candidate = candidate;
         this.job = job;
