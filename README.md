@@ -8,6 +8,7 @@ The project leverages Spring ORM with Hibernate/JPA for object-relational mappin
 This application is designed to demonstrate how Spring Framework + ORM concepts can be used to build scalable, maintainable, and modular applications.
 
 🎯 Features
+
 🔹 Candidate Module
 
 Register as a new candidate with details (name, email, experience, etc.)
