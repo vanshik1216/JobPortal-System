@@ -71,15 +71,7 @@ public class Candidate {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "Candidate{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", college='" + college + '\'' +
-                ", experience=" + experience +
-                ", password='" + password + '\'' +
-                '}';
-    }
+
+
+
 }
