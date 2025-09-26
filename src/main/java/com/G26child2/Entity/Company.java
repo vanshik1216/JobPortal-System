@@ -51,6 +51,7 @@ public  Company(){}
     }
 
 
+@Override
     public String toString() {
         return "Company{" +
                 "id=" + id +
@@ -59,4 +60,5 @@ public  Company(){}
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }

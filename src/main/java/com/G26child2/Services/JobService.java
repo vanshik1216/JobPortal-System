@@ -36,4 +36,5 @@ public class JobService {
     public void deleteJob(int id) {
         jobDao.deleteJob(id);
     }
+
 }
